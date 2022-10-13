@@ -33,7 +33,7 @@ function CapitalData({ route }) {
         });
       })
       .catch(() => {
-        Alert.alert('Oops! Something went wrong', 'Please check connection');
+        Alert.alert('Please check connection');
       });
   }
   
