@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import axios from 'axios';
 
 const Home = ({navigation}) => {
   const [country, setCountry] = useState<string>('');
@@ -14,37 +15,24 @@ const Home = ({navigation}) => {
     setCountry(enteredname);
   };
 
-  const handleCountrySubmit = async (name:string) => {
+  // const handleCountrySubmit = (name:string) => {
 
-    try {
-      const res = await fetch(
-        `https://restcountries.com/v2/name/${country}?fullText=true`
-      );
-      if (!res.ok) {
-        throw new Error("Please Enter Correct Country Name!!!");
-      }
-      const data = await res.json();
-      navigation.navigate("Weather", { state: name });
-      console.log(data)
-    } catch (error) {
-      Alert.alert("Please Enter Correct Country Name!!!");
-    }
-    // navigation.navigate('Weather')
-    // const res = await fetch(`http://api.weatherstack.com/current?access_key=d34a8c4ec3aa787d79f50071cdae8836&query=${name}`)
-    // const data = res.json();
-    // console.log(data);
-    // axios
-    //   .get(
-    //     `http://api.weatherstack.com/current?access_key=d34a8c4ec3aa787d79f50071cdae8836&query=${name}`,
-    //   )
-    //   .then(() => {
-    //     if (res.data.success === false) {
-    //       throw new Error();
-    //     }
-    //   })
-    //   .catch(() => {
-    //     Alert.alert('Oops! Something went wrong', 'Please check connection');
-    //   });
+  //     navigation.navigate("Country", { data: name });
+  // };
+  const handleCountrySubmit = async (name: string) => {
+    axios
+      .get(
+        `http://api.weatherstack.com/current?access_key=d34a8c4ec3aa787d79f50071cdae8836&query=${name}`,
+      )
+      .then((res: any) => {
+        if (res.data.success === false) {
+          throw new Error();
+        }
+        navigation.navigate('Country', {data: name});
+      })
+      .catch(() => {
+        Alert.alert('Data Not Found');
+      });
   };
 
   return (
@@ -58,7 +46,6 @@ const Home = ({navigation}) => {
           title="Submit"
           disabled={country.trim().length === 0 ? true : false}
           onPress={() => handleCountrySubmit(country)}
-          // onPress={() => {navigation.navigate('Weather')}}
         />
       </View>
   );

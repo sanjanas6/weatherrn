@@ -1,27 +1,31 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./screens/Home";
-import Weather from "./screens/WeatherData";
+import Country from "./screens/CountryData";
+import Capital from "./screens/CapitalData";
 
 const stack = createNativeStackNavigator();
 
+const globalScreenOptions = {
+  headerStyle: { backgroundColor: "#2C6BED" },
+  headerTitleStyle: { color: "white" },
+  headerTintColor: "white",
+  headerTitleAlign: "center",
+};
 export default function App() {
   return (
     <NavigationContainer>
       <stack.Navigator>
+        <stack.Screen name='Home' component={Home} options={{contentStyle: {backgroundColor: "#152238"}}} />
         <stack.Screen
-          name='Home'
-          component={Home}
+          name='Country'
+          component={Country}
           options={{
-            title: "Weather App",
-            headerStyle: {
-              backgroundColor: "#FFFFE0",
-            },
-            headerTintColor: "black", //Title Color for our Header
+            title: "Country Information",
             contentStyle: {backgroundColor: "#152238"}
           }}
-        />
-        <stack.Screen name='Weather' component={Weather} />
+        /> 
+        <stack.Screen name='Capital' component={Capital} options={{contentStyle: {backgroundColor: "#152238"}}}/>
       </stack.Navigator>
     </NavigationContainer>
   );
