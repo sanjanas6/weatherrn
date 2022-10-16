@@ -8,11 +8,11 @@ import {
 
 const Home = ({navigation}) => {
 
-  const [country, setCountry] = useState<string>('');  
+const [country, setCountry] = useState<string>('');  
 const handleReset = () => {
   setCountry('');
 }
-  const handleCountry = (name:string) => {
+const handleCountry = (name:string) => {
 
       navigation.navigate("Country", { data: name });
       handleReset()

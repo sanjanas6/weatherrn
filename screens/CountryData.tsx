@@ -31,6 +31,7 @@ const CountryData = ({ navigation, route  }) => {
           latitude: res.data[0].latlng[0],
           longitude: res.data[0].latlng[1],
           region: res.data[0].region,
+          area: res.data[0].area,
           flag: res.data[0].flags.png,
         });
       });
@@ -51,7 +52,8 @@ const CountryData = ({ navigation, route  }) => {
           <Text style={styles.text}>Population: {data.population}</Text>
           <Text style={styles.text}>Latitude: {data.latitude}</Text>
           <Text style={styles.text}>Longitude: {data.longitude}</Text>
-          {/* <Text style={styles.text}>Region: {data.region}</Text> */}
+          <Text style={styles.text}>Area: {data.area}</Text>
+          <Text style={styles.text}>Region: {data.region}</Text>
           {/* <Image/> */}
         </View>
         <View style={styles.button}>
