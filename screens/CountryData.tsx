@@ -10,7 +10,9 @@ const CountryData = ({ navigation, route  }) => {
     longitude: null,
     flag: "",
     region: null,
+    area: null,
     nativeName: null,
+    timezones: null
   });
 
   useEffect(() => {
@@ -27,12 +29,14 @@ const CountryData = ({ navigation, route  }) => {
         console.log(res);
         setData({
           capital: res.data[0].capital[0],
+          native: res.data[0].name.nativeName.eng.common,
           population: res.data[0].population,
           latitude: res.data[0].latlng[0],
           longitude: res.data[0].latlng[1],
           region: res.data[0].region,
           area: res.data[0].area,
           flag: res.data[0].flags.png,
+          timezones: res.data[0].timezones[0],
         });
       });
   }
@@ -54,6 +58,8 @@ const CountryData = ({ navigation, route  }) => {
           <Text style={styles.text}>Longitude: {data.longitude}</Text>
           <Text style={styles.text}>Area: {data.area}</Text>
           <Text style={styles.text}>Region: {data.region}</Text>
+          <Text style={styles.text}>NativeName: {data.native}</Text>
+          <Text style={styles.text}>TimeZone: {data.timezones}</Text>
           {/* <Image/> */}
         </View>
         <View style={styles.button}>
