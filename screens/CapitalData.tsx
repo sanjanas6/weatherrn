@@ -39,7 +39,7 @@ function CapitalData({ route }) {
   
   return (
     <View style={styles.WeatherDataContainer}>
-    {data === null ? (
+    {data.temperature === null ? (
       <Text style={styles.loading}>Loading...</Text>
     ) : (
       <View>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   loading: {
     fontSize: 40,
+    color: "white",
   },
   text: {
     fontSize: 20,
